@@ -45,7 +45,7 @@ dotenv.config();
 
 const env = {
   NODE_ENV: process.env.NODE_ENV || "development",
-  PORT: process.env.PORT || 5000,
+  PORT: process.env.PORT,
 
   // Mongo
   MONGO_URI: process.env.MONGO_URI,

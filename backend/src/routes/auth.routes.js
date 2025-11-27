@@ -8,17 +8,33 @@ import {
   resetPassword,
   verifyEmail,
 } from "../controllers/auth.controller.js";
+import { requireAuth } from "../middlewares/auth.js";
 
-const r = Router();
+const authRouter = Router();
 
-r.post("/signup", ...signup);
-r.post("/login", ...login);
-r.post("/refresh", refresh);
-r.post("/logout", logout);
+authRouter.post("/signup", ...signup);
+authRouter.post("/login", ...login);
+authRouter.post("/refresh", refresh);
+authRouter.post("/logout", logout);
 
-r.post("/password-reset/request", ...requestPasswordReset);
-r.post("/password-reset/:userId/:token", ...resetPassword);
+authRouter.post("/password-reset/request", ...requestPasswordReset);
+authRouter.post("/password-reset/:userId/:token", ...resetPassword);
 
-r.get("/verify-email/:userId/:token", ...verifyEmail);
+authRouter.get("/verify-email/:userId/:token", ...verifyEmail);
 
-export default r;
+authRouter.get("/me", requireAuth(), async (req, res) => {
+  try {
+    return res.json({
+      user: {
+        id: req.user.id,
+        email: req.user.email,
+        role: req.user.role,
+        name: req.user.name
+      },
+    });
+  } catch (err) {
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
+export default authRouter;

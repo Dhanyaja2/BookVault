@@ -7,6 +7,7 @@ export const issueTokens = async (user) => {
     id: user._id.toString(),
     email: user.email,
     role: user.role,
+    name: user.name,
   };
   const accessToken = signAccess(payload);
   const refreshToken = signRefresh(payload);

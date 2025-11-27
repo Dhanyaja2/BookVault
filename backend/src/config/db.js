@@ -1,14 +1,15 @@
 import mongoose from "mongoose";
+import env from "./env.js";
 
 const connectDB = async () => {
-  const MONGO_URI = process.env.MONGO_URI;
+  const MONGO_URI = env.MONGO_URI;
   if (!MONGO_URI) {
     console.error("MONGO_URI not found in environment variables");
     process.exit(1);
   }
   mongoose.set("strictQuery", true);
 
-  if (process.env.NODE_ENV === "development") {
+  if (env.NODE_ENV === "development") {
     mongoose.set("debug", true);
   }
 
