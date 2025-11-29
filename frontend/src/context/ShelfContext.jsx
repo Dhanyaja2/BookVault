@@ -12,7 +12,7 @@ export const ShelfProvider = ({ children }) => {
   const fetchShelves = async () => {
     try {
       const res = await fetch(
-        "https://bookvault-production.up.railway.app/shelves",
+        "https://bookvault-production.up.railway.app/api/shelves",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -32,7 +32,7 @@ export const ShelfProvider = ({ children }) => {
   const createShelf = async (name, description = "") => {
     try {
       const res = await fetch(
-        "https://bookvault-production.up.railway.app/shelves",
+        "https://bookvault-production.up.railway.app/api/shelves",
         {
           method: "POST",
           headers: {
@@ -57,7 +57,7 @@ export const ShelfProvider = ({ children }) => {
   const addBookToShelf = async (shelfId, bookId) => {
     try {
       const res = await fetch(
-        `https://bookvault-production.up.railway.app/shelves/${shelfId}/books`,
+        `https://bookvault-production.up.railway.app/api/shelves/${shelfId}/books`,
         {
           method: "POST",
           headers: {
@@ -79,7 +79,7 @@ export const ShelfProvider = ({ children }) => {
   const removeBookFromShelf = async (shelfId, bookId) => {
     try {
       const res = await fetch(
-        `https://bookvault-production.up.railway.app/shelf/${shelfId}/books/${bookId}`,
+        `https://bookvault-production.up.railway.app/api/shelf/${shelfId}/books/${bookId}`,
         {
           method: "DELETE",
           headers: {
