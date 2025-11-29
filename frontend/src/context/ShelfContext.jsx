@@ -11,12 +11,15 @@ export const ShelfProvider = ({ children }) => {
   // Fetch all shelves
   const fetchShelves = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/shelves", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://bookvault-production.up.railway.app/shelves",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          credentials: "include",
+        }
+      );
       console.log("fetch shelves executed");
       const data = await res.json();
       setShelves(data.data || []);
@@ -28,14 +31,17 @@ export const ShelfProvider = ({ children }) => {
   // Create new shelf
   const createShelf = async (name, description = "") => {
     try {
-      const res = await fetch("http://localhost:3000/api/shelves", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({ name, description }),
-      });
+      const res = await fetch(
+        "https://bookvault-production.up.railway.app/shelves",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({ name, description }),
+        }
+      );
 
       console.log("create shelf executed");
       const data = await res.json();
@@ -51,7 +57,7 @@ export const ShelfProvider = ({ children }) => {
   const addBookToShelf = async (shelfId, bookId) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/shelves/${shelfId}/books`,
+        `https://bookvault-production.up.railway.app/shelves/${shelfId}/books`,
         {
           method: "POST",
           headers: {
@@ -73,7 +79,7 @@ export const ShelfProvider = ({ children }) => {
   const removeBookFromShelf = async (shelfId, bookId) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/shelf/${shelfId}/books/${bookId}`,
+        `https://bookvault-production.up.railway.app/shelf/${shelfId}/books/${bookId}`,
         {
           method: "DELETE",
           headers: {

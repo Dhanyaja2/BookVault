@@ -3,7 +3,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
-const API = "http://localhost:3000/api/auth";
+// const API = "http://localhost:3000/api/auth";
+const API = "https://bookvault-production.up.railway.app/auth";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {

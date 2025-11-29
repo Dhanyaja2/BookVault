@@ -84,7 +84,7 @@ const Search = () => {
       isbn13: book.isbn13?.[0],
     };
 
-    const res = await fetch("http://localhost:3000/api/books/import", {
+    const res = await fetch("https://bookvault-production.up.railway.app/books/import", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -105,7 +105,7 @@ const Search = () => {
   const handleAddToShelf = async (shelfId) => {
     try {
       // 1. IMPORT BOOK INTO BACKEND
-      const res = await fetch("http://localhost:3000/api/books/import", {
+      const res = await fetch("https://bookvault-production.up.railway.app/books/import", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
