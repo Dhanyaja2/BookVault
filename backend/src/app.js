@@ -18,7 +18,8 @@ app.use(express.json({ limit: "1mb" }));
 app.use(helmet());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://bookvault-production.up.railway.app/",
     credentials: true,
   })
 );
