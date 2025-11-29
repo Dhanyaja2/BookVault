@@ -4,7 +4,7 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 // const API = "http://localhost:3000/api/auth";
-const API = "https://bookvault-production.up.railway.app/auth";
+const API = "https://bookvault-production.up.railway.app/api/auth";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
   // --------------------------------------------------
   const refreshToken = async () => {
     try {
-      const res = await fetch(`${API}/auth/refresh`, {
+      const res = await fetch(`${API}/refresh`, {
         method: "POST",
         credentials: "include",
       });
