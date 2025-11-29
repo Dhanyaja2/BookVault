@@ -21,13 +21,23 @@ export const requireAuth =
   };
 
 // Cookie helper for refresh token
+// export const setRefreshCookie = (res, token) => {
+//   const prod = env.NODE_ENV === "production";
+//   res.cookie("rt", token, {
+//     httpOnly: true,
+//     secure: env.COOKIE_SECURE || prod,
+//     sameSite: prod ? "None" : "Lax",
+//     path: "/api/auth/refresh",
+//     maxAge:  7 * 24 * 60 * 60 * 1000,
+//   });
+// };
+
 export const setRefreshCookie = (res, token) => {
-  const prod = env.NODE_ENV === "production";
   res.cookie("rt", token, {
     httpOnly: true,
-    secure: env.COOKIE_SECURE || prod,
-    sameSite: prod ? "None" : "Lax",
-    path: "/api/auth/refresh",
-    maxAge:  7 * 24 * 60 * 60 * 1000,
+    secure: true,
+    sameSite: "none",
+    path: "/", // IMPORTANT: allow cookie on all routes
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 };

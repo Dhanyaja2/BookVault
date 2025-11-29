@@ -16,16 +16,24 @@ import recommendedRoutes from "./routes/recommend.routes.js";
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 app.use(helmet());
+// app.use(
+//   cors({
+//     // origin: "http://localhost:5173",
+//     // origin: "https://bookvault-production.up.railway.app/",
+//     // origin:
+//       // "https://book-vault-ozmz-git-main-dhanyajas-projects-9201af3f.vercel.app",
+//     origin: "https://book-vault-ozmz.vercel.app",
+//     credentials: true,
+//   })
+// );
+
 app.use(
   cors({
-    // origin: "http://localhost:5173",
-    // origin: "https://bookvault-production.up.railway.app/",
-    // origin:
-      // "https://book-vault-ozmz-git-main-dhanyajas-projects-9201af3f.vercel.app",
-    origin: "https://book-vault-ozmz.vercel.app",
+    origin: process.env.CLIENT_ORIGIN,
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
