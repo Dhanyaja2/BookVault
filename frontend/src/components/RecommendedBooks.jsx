@@ -74,7 +74,6 @@ const RecommendedBooks = () => {
       authors: [b.author],
       coverUrl: b.coverUrl,
     };
-
     const res = await fetch("https://bookvault-production.up.railway.app/api/books/import", {
       method: "POST",
       headers: {
